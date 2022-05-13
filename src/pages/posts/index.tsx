@@ -4,6 +4,7 @@ import Prismic from "@prismicio/client";
 import { RichText } from "prismic-dom"
 import { GetStaticProps } from "next";
 import { getPrismicClient } from "../../services/prismic";
+import Link from "next/link";
 
 type Posts = {
     slug: string;
@@ -27,11 +28,13 @@ export default function Posts({ posts }: PostsProps) {
             <main className={styles.container}>
                 <div className={styles.posts}>
                     {posts.map(post => (
-                        <a href="#" key={post.slug}>
-                            <time>{post.updatedAt}</time>
-                            <strong>{post.title}</strong>
-                            <p>{post.exerpt}</p>
-                        </a>
+                        <Link href={`/posts/${post.slug}`}>
+                            <a key={post.slug}>
+                                <time>{post.updatedAt}</time>
+                                <strong>{post.title}</strong>
+                                <p>{post.exerpt}</p>
+                            </a>
+                        </Link>
                     )
                     )}
                 </div>
@@ -46,15 +49,15 @@ export const getStaticProps: GetStaticProps = async () => {
     const response = await prismic.query<any>([
         Prismic.predicates.at("document.type", "post")
     ], {
-        fetch: ["post.Title", "post.Content"],
+        fetch: ["post.title", "post.content"],
         pageSize: 100,
     })
 
     const posts = response.results.map(post => {
         return {
             slug: post.uid,
-            title: RichText.asText(post.data.Title),
-            exerpt: post.data.Content.replaceAll("\n", " ").split(" ").slice(0, 30).join(" ").concat("..."),
+            title: RichText.asText(post.data.title),
+            exerpt: post.data.content.find(content => content.type === "paragraph")?.text ?? "",
             updatedAt: new Date(post.last_publication_date).toLocaleDateString("pt-BR", {
                 day: "2-digit",
                 month: "long",
@@ -63,6 +66,8 @@ export const getStaticProps: GetStaticProps = async () => {
         }
     })
     return {
-        props: { posts }
+        props: {
+            posts
+        }
     }
 }

@@ -1,7 +1,13 @@
 {
   "_cts": {
     "post": {
-      "Title": {
+      "content": {
+        "config": {
+          "patternType": "STORY",
+          "blocks": 1
+        }
+      },
+      "title": {
         "config": {
           "patternType": "HEADING",
           "blocks": 1

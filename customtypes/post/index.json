@@ -12,20 +12,22 @@
           "placeholder": ""
         }
       },
-      "Title": {
+      "title": {
         "type": "StructuredText",
         "config": {
-          "label": "Title",
+          "label": "Title Post",
           "placeholder": "",
           "allowTargetBlank": true,
           "single": "heading1"
         }
       },
-      "Content": {
-        "type": "Text",
+      "content": {
+        "type": "StructuredText",
         "config": {
           "label": "Content",
-          "placeholder": ""
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
       "slices": {
