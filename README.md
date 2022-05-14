@@ -44,10 +44,15 @@ Ignews - é uma aplicação desenvolvida em React.js com Next.js e Typescript, t
 ## 🎨 Layout
 
 <p align="center">
+
   <img alt="Visual" title="#Visual" src="./layout1.png" width="800px">
+
   <img alt="Visual" title="#Visual" src="./layout2.png" width="800px">
+
   <img alt="Visual" title="#Visual" src="./layout3.png" width="800px">
+
   <img alt="Visual" title="#Visual" src="./layout4.png" width="800px">
+  
 </p>
 
 ---
