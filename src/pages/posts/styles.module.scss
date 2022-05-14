@@ -8,6 +8,10 @@
     max-width: 720px;
     margin: 5rem auto 0;
 
+    &:last-child {
+        margin-bottom: 50px;
+    }
+
     a {
         display: block;
 

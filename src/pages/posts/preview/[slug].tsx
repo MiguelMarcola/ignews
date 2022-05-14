@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
@@ -54,9 +54,11 @@ export default function Post({ post }: PostProps) {
     );
 }
 
-export const getStaticPaths = () => {
+export const getStaticPaths: GetStaticPaths = () => {
     return {
-        paths: [],
+        paths: [
+            { params: { slug: "typescript-por-tras-do-superset-de-javascript" } }
+        ],
         fallback: "blocking"
     }
 }
@@ -91,6 +93,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return {
         props: {
             post
-        }
+        },
+        redirect: 60 * 30, // 30 minutes
     }
 }
