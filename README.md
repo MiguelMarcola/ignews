@@ -44,10 +44,10 @@ Ignews - é uma aplicação desenvolvida em React.js com Next.js e Typescript, t
 ## 🎨 Layout
 
 <p align="center">
-  <img alt="Visual" title="#Visual" src="./layout1.png" width="400px">
-  <img alt="Visual" title="#Visual" src="./layout2.png" width="400px">
-  <img alt="Visual" title="#Visual" src="./layout3.png" width="400px">
-  <img alt="Visual" title="#Visual" src="./layout4.png" width="400px">
+  <img alt="Visual" title="#Visual" src="./layout1.png" width="800px">
+  <img alt="Visual" title="#Visual" src="./layout2.png" width="800px">
+  <img alt="Visual" title="#Visual" src="./layout3.png" width="800px">
+  <img alt="Visual" title="#Visual" src="./layout4.png" width="800px">
 </p>
 
 ---
@@ -94,7 +94,6 @@ GITHUB_CLIENT_ID="Chave pública do GitHub"
 GITHUB_CLIENT_SECRET="Chave privada do GitHub"
 
 
-NEXTAUTH_SECRET=pBlsP1KH4X
 NEXTAUTH_URL=http://localhost:3000
 
 
@@ -110,7 +109,7 @@ Para iniciar os webhooks do Stripe utilize no terminal o comando >>> ./stripe li
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-#### **Website**  ([React](https://reactjs.org/)  +  [TypeScript](https://www.typescriptlang.org/)) + [Nextjs](https://nextjs.org/)
+#### **Website**  ([Reactjs](https://reactjs.org/)  +  [TypeScript](https://www.typescriptlang.org/) + [Nextjs](https://nextjs.org/))
 
 -   Sass
 -   JAMStack
