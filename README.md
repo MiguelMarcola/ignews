@@ -98,7 +98,7 @@ STRIPE_CANCEL_URL=http://localhost:3000/
 GITHUB_CLIENT_ID="Chave pública do GitHub"
 GITHUB_CLIENT_SECRET="Chave privada do GitHub"
 
-
+NEXTAUTH_SECRET=pBlsP1KH4X
 NEXTAUTH_URL=http://localhost:3000
 
 
