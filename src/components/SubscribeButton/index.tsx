@@ -4,11 +4,7 @@ import { api } from "../../services/api";
 import { getStripeJs } from "../../services/stripe-js";
 import styles from "./styles.module.scss";
 
-interface ISubscribeButtonProps {
-    priceId: string;
-}
-
-export function SubscribeButton({ priceId }: ISubscribeButtonProps) {
+export function SubscribeButton() {
     const { data: session } = useSession();
 
     async function handleSubscribe() {
