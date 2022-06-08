@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react"
 import { mocked } from "jest-mock"
 import { FaAlignJustify } from "react-icons/fa"
 import Posts, { getStaticProps } from "../../pages/posts"
-import { stripe } from "../../services/stripe"
+import { getPrismicClient } from "../../services/prismic"
 
 jest.mock("next/router")
 jest.mock("next-auth/react", () => {
@@ -12,24 +12,39 @@ jest.mock("next-auth/react", () => {
         }
     }
 })
+jest.mock("../../services/prismic")
 
-jest.mock("../../services/stripe")
+const posts = [{ slug: "my-new-post", title: "My new post", exerpt: "Post exerpt", updatedAt: "10 de Abril" }];
 
 describe("Posts page", () => {
     it("renders correctly", () => {
         render(
-            <Posts />
+            <Posts posts={posts} />
         )
 
-        expect(screen.getByText("for $10.00 month")).toBeInTheDocument();
+        expect(screen.getByText("My new post")).toBeInTheDocument();
     });
 
     it("loads initial data", async () => {
-        const retriveStripePricesMocked = mocked(stripe.prices.retrieve)
+        const getPrismicClientMocked = mocked(getPrismicClient)
 
-        retriveStripePricesMocked.mockResolvedValueOnce({
-            id: "fake-price-id",
-            unit_amount: 1000,
+        getPrismicClientMocked.mockReturnValueOnce({
+            query: jest.fn().mockResolvedValueOnce({
+                results: [
+                    {
+                        uid: "my-new-post",
+                        data: {
+                            title: [
+                                { type: "heading", text: "My new post" }
+                            ],
+                            content: [
+                                { type: "paragraph", text: "Post exerpt" }
+                            ],
+                        },
+                        last_publication_date: "04-01-2021",
+                    }
+                ]
+            })
         } as any)
 
         const response = await getStaticProps({})
@@ -37,10 +52,12 @@ describe("Posts page", () => {
         expect(response).toEqual(
             expect.objectContaining({
                 props: {
-                    product: {
-                        priceId: "fake-price-id",
-                        amount: "$10.00"
-                    }
+                    posts: [{
+                        slug: "my-new-post",
+                        title: "My new post",
+                        exerpt: "Post exerpt",
+                        updatedAt: "01 de abril de 2021"
+                    }]
                 }
             })
         )
