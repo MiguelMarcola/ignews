@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import { mocked } from "jest-mock"
-import Home, { getStaticProps } from "../../pages"
+import { FaAlignJustify } from "react-icons/fa"
+import Posts, { getStaticProps } from "../../pages/posts"
 import { stripe } from "../../services/stripe"
 
 jest.mock("next/router")
@@ -14,10 +15,10 @@ jest.mock("next-auth/react", () => {
 
 jest.mock("../../services/stripe")
 
-describe("Home page", () => {
+describe("Posts page", () => {
     it("renders correctly", () => {
         render(
-            <Home product={{ priceId: "fake-price-id", amount: "$10.00" }} />
+            <Posts />
         )
 
         expect(screen.getByText("for $10.00 month")).toBeInTheDocument();
